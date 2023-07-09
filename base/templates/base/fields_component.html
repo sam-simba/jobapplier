@@ -1,0 +1,5 @@
+{% for field in fields %}
+<p>
+  <big><a href="{% url 'home' %}?q={{field.name}} "> {{field}} </a></big>
+</p>
+{% endfor %}

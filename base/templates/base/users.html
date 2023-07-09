@@ -1,0 +1,33 @@
+{% extends 'main.html' %} {% block content %}
+
+<style>
+  .users-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="users-container">
+  <div>
+    <h3>Filter By Group</h3>
+    <hr />
+    <h4><a href="{% url 'users' %}">All Users</a></h4>
+    {% include 'base/groups_component.html' %}
+  </div>
+
+  <div></div>
+
+  <div>
+    <!-- <h3>List of Users</h3>
+    {% include 'base/users_component.html' %} -->
+
+    <!-- <h3>List of Applicants</h3> -->
+    <p><u>Applicants</u></p>
+    {% include 'base/job_applicants_component.html' %}
+    <p><u>Superusers</u></p>
+    {% include 'base/admin_component.html' %}
+    <p><u>Hiring Managers</u></p>
+    {% include 'base/hiring_mgr_component.html' %}
+  </div>
+</div>
+{% endblock %}

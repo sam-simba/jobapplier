@@ -1,0 +1,44 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .app-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="app-container">
+  <div></div>
+
+  {% if request.user == Job.hiring_mgr %}
+  <div>
+    <h3>{{ application.job }}</h3>
+    <hr />
+    <div>
+      <table>
+        <tr>
+          <th>Applicant's Username</th>
+          <td>{{application.applicant}}</td>
+        </tr>
+        <tr>
+          <th>Reason for Application</th>
+          <td>{{application.interest}}</td>
+        </tr>
+        <tr>
+          <th>Date Applied</th>
+          <td>{{application.applied}}</td>
+        </tr>
+        <tr>
+          <th>Last Modified</th>
+          <td>{{application.applied}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  {% else %}
+  <div><span>You are not allowed to view this page</span></div>
+  {% endif %}
+
+  <div></div>
+</div>
+{% endblock %}

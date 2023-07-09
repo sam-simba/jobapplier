@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>Username</th>
+  </tr>
+  {% for admin in admins %}
+  <tr>
+    <td>{{ admin.id }}</td>
+    <td>{{ admin.username }}</td>
+  </tr>
+  {% endfor %}
+</table>

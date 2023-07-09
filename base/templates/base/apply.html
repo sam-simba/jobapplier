@@ -1,0 +1,76 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .job-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="job-container">
+  <div></div>
+
+  <div>
+    <h3>{{job}}</h3>
+    <hr />
+    {% if request.user not in applicants %}
+    SUBMIT YOUR APPLICATION
+    <div>
+      <p></p>
+        <h4>You are about to apply for this job. Your details will be submitted as follows: </h4>
+        <table>
+          <tr>
+            <td>Username</td>  
+            <td>{{ user }}</td>
+          </tr>
+          <tr>
+            <td>First Name</td>
+            <td> {{ user.first_name }} </td>
+          </tr>
+          <tr>
+            <td>Last Name</td>  
+            <td>{{ user.last_name }}</td>
+          </tr>
+        </table>
+        <br>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <textarea id="interest" name="interest" placeholder="Explain your interest here..." rows="6" cols="80%"></textarea><br>
+        <span>To change the above details, kindly review your profile before submitting</span>
+        <h4>Click 'SUBMIT APPLICATION' to continue. </h4>
+        <input type="submit" value="SUBMIT APPLICATION" />
+      </form>
+    </div>
+    {% else %}
+    DELETE YOUR APPLICATION
+    <div>
+      <p></p>
+        <h4>You are about to OPT OUT of job opportunity.</h4>
+        <h4>Click 'DELETE APPLICATION' to continue. </h4>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <input type="submit" value="DELETE APPLICATION" />
+      </form>
+    </div>
+    {% endif %}
+
+    <div>
+      <p></p>
+      <p>
+        <small>
+          Go
+          <a href="{% url 'job' job.id %}"><b>back</b></a>
+          to job details
+        </small></p>
+        <small>
+          See more from
+          <a href="{% url 'user-profile' job.hiring_mgr.id %}"
+            ><b>{{job.hiring_mgr.username}}</b></a
+          >
+        </small>
+      </p>
+    </div>
+  </div>
+
+  <div></div>
+</div>
+{% endblock %}

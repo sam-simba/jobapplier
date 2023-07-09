@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>Username</th>
+  </tr>
+  {% for hirer in hirers %}
+  <tr>
+    <td>{{ hirer.id }}</td>
+    <td>{{ hirer.username }}</td>
+  </tr>
+  {% endfor %}
+</table>

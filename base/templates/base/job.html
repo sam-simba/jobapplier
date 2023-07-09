@@ -1,0 +1,106 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .job-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="job-container">
+  <div>
+    <h3>Similar Jobs</h3>
+    <hr />
+  </div>
+
+  <div>
+    <h3>{{job}}</h3>
+    <small>
+      Posted by {{ job.hiring_mgr }}, {{job.posted|timesince}} ago
+    </small>
+    <hr />
+    <div>
+      <h4><u>About This Job</u></h4>
+      <p><b>Field: </b> {{ job.field }} </p>
+      <p>{{job.description}}</p>
+      <div>
+      {% if request.user not in applicants %}
+        <span>{{ applicants_count }} people have applied for this job. You can be one of them too.</span>
+        <h4><u><a href="{% url 'apply' job.id %}"> Apply For This Job</a></u></h4>
+      </div>
+      {% else %}
+      <div>
+        <span>Congrats! You are among the {{ applicants_count }} applicants for this job.<br> You can follow the link below to opt our of this job opportunity</span>
+        <h4><u><a href="{% url 'apply' job.id %}"> Opt Out of the Opportunity</a></u></h4>
+        <span><u>These are your application details</u></span>
+        <table>
+          <tr>
+            <td> Username </td>
+            <td>{{ request.user.username }} </td>
+          </tr>
+          <tr>
+            <td> First Name </td>
+            <td>{{ request.user.first_name }} </td>
+          </tr>
+          <tr>
+            <td> Last Name </td>
+            <td>{{ request.user.last_name }} </td>
+          </tr>
+          <tr>
+            <td> Reason for Applying </td>
+            <td>{{ my_application.interest }} </td>
+          </tr>
+        </table>
+      </div>
+      {% endif %}
+      
+    </div>
+    <div>
+      {% if request.user.id == job.hiring_mgr.id %}
+      <div>
+        <a href="{% url 'edit-job' job.id %}">Edit</a> &nbsp;
+        <a href="{% url 'delete-job' job.id %}">Delete</a> <br />
+      </div>
+      <small>
+        You posted this job.
+        <a href="{% url 'user-profile' job.hiring_mgr.id %}"> <b>Click Here</b> </a> to visit your profile
+        </small>
+      {% else %}
+      <small>
+        This job was posted by {{job.hiring_mgr}}. View
+        <a href="{% url 'user-profile' job.hiring_mgr.id %}"
+          > {{job.hiring_mgr}}'s Profile</a>
+      </small>
+        {% endif %}
+      </p>
+    </div>
+
+    <div>
+      {% if job.hiring_mgr.id == request.user.id %}
+      <h4>Dear @{{job.hiring_mgr}}, these are the people who applied for this job position</h4>
+      <hr>
+      <div>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Reason for Applying</th>
+            <th> Date Applied</th>
+            <th>Last Modified</th>
+          </tr>
+        {% for application in applications %}
+          <tr>
+            <td>{{ application.applicant }}</td>
+            <td>{{ application }}</td>
+            <td>{{ application.applied }}</td>
+            <td>{{ application.applied }}</td>
+            <td><a href="{% url 'application' application.id %}"> View Application </a></td>
+          </tr>
+        {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div></div>
+</div>
+{% endblock %}

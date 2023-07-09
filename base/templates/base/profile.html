@@ -1,0 +1,31 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .user-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="user-container">
+  <div>
+    <h3>Previous Activity</h3>
+    <hr />
+  </div>
+
+  <div>
+    <h3>{{ user.username }}</h3>
+    <hr />
+    <div>
+      <h4><u>Current Job Posts</u></h4>
+      {% for job in jobs %} {% if job.hiring_mgr.id == user.id %}
+      <p><a href="{% url 'job' job.id %}"> {{job}}</a></p>
+      {% endif %} {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <h3>{{ user.username }}'s Stats</h3>
+    <hr />
+  </div>
+</div>
+{% endblock %}

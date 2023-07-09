@@ -1,0 +1,28 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .jobpost-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="jobpost-container">
+  <div>
+    <h3>Common Fields</h3>
+    <hr />
+    {% include 'base/fields_component.html' %}
+  </div>
+
+  <div>
+    <h3>Post New Job</h3>
+    <hr />
+    <form action="" method="post">
+      {% csrf_token %}{{ form.as_p }}
+      <label>Posting as {{user}} </label> <br />
+      <input type="submit" value="Post Job" />
+    </form>
+  </div>
+
+  <div></div>
+</div>
+{% endblock %}

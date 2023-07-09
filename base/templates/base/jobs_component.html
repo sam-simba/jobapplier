@@ -1,0 +1,11 @@
+{% for job in jobs %}
+<p>{{ job.id }} -- <a href=" {% url 'job' job.id %} "> {{job}}</a></p>
+
+<small
+  >Posted by
+  <a href="{% url 'user-profile' job.hiring_mgr.id %}">
+    {{job.hiring_mgr.username}}
+  </a>
+</small>
+<hr />
+{% endfor %}

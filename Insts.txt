@@ -1,0 +1,8 @@
+Create an app with the following endpoints:
+
+/jobs/ 			        - this endpoint lists all the jobs present in the system 
+/jobs/1/ 		        - this endpoint list one job with id 1
+/applications/ 		- this endpoint lists all the applications for a specific user. 
+/applications/1/ 	- this endpoint lists the application with id 1
+/login/ 		        - Allows a user to login and taken to the application page 
+/logout/ 		        - Logs out a user. You can choose to invalidate the token for the user.

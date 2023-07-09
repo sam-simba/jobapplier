@@ -1,0 +1,30 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+</style>
+
+<div class="home-container">
+  <div>
+    <h3>Browse Top Fields</h3>
+    <hr />
+    {% include 'base/fields_component.html' %}
+  </div>
+
+  <div>
+    <p>
+      <a href="{% url 'post-job' %}"> Post a job</a> &nbsp; &nbsp; &nbsp;
+      <a href="{% url 'users' %}">View Groups/Users</a>
+    </p>
+    <span> {{ jobs_count }} jobs available</span>
+    <hr />
+    {% include 'base/jobs_component.html' %}
+  </div>
+  <div>
+    <h3>Trending Jobs</h3>
+    <hr />
+  </div>
+</div>
+{% endblock %}

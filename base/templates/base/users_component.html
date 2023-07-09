@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>Username</th>
+    <th>Group</th>
+    <th>User Email</th>
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td>{{ user.id }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.groups.name }}</td>
+    <td>{{ user.email }}</td>
+  </tr>
+  {% endfor %}
+</table>
