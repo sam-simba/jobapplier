@@ -10,7 +10,7 @@ def getRoutes(request):
     routes = [
         'GET /api',
         'GET /api/jobs',
-        'GET /api/job/:id',
+        'GET /api/jobs/:id',
         'GET /api/applications',
         'GET /api/applications/:id',
     ]
